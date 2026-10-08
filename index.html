@@ -197,7 +197,7 @@ function loadData() {
 
   const script = document.createElement("script");
   script.id = "apiScript";
-  script.src = API_URL + "?action=data&callback=showData&t=" + Date.now();
+  script.src = API_URL + "?action=data&callback=showData";
   script.onerror = () => console.log("API connection error");
   document.body.appendChild(script);
 }
