@@ -161,21 +161,45 @@ AI Transformer Health Monitoring System
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxYX8yjIdX2Sp3o9EtQGG5ArTVUNDqbgrV6MLbP_7IWUvFpRHQoj9Wr0BeaXBVlcN0n/exec";
 
-function loadData() {
-  const url = API_URL + "?action=data&callback=showData";
+function showData(data) {
+  console.log("Transformer Data:", data);
 
-  const oldScript = document.getElementById("apiScript");
-  if (oldScript) oldScript.remove();
+  const fields = {
+    temperature: data.temperature,
+    voltage: data.voltage,
+    current: data.current,
+    load: data.load
+  };
+
+  for (const [name, value] of Object.entries(fields)) {
+    const element = document.getElementById(name);
+    if (element) {
+      element.textContent =
+        value === null || value === undefined
+          ? "--"
+          : value;
+    }
+  }
+
+  const status = document.getElementById("status");
+  if (status) status.textContent = data.status || "WAITING";
+
+  const relay = document.getElementById("relay");
+  if (relay) relay.textContent = data.relay || "UNKNOWN";
+
+  const ai = document.getElementById("ai");
+  if (ai) ai.textContent = data.ai || "Waiting for ESP32 data...";
+}
+
+function loadData() {
+  const old = document.getElementById("apiScript");
+  if (old) old.remove();
 
   const script = document.createElement("script");
   script.id = "apiScript";
-  script.src = url;
+  script.src = API_URL + "?action=data&callback=showData&t=" + Date.now();
+  script.onerror = () => console.log("API connection error");
   document.body.appendChild(script);
-}
-
-function showData(data) {
-  console.log("Transformer data:", data);
-  // अगला स्टेप: डेटा को Dashboard पर दिखाना
 }
 
 loadData();
