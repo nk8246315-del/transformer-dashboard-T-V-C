@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Transformer Dashboard</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+.header{
+    text-align:center;
+    padding:25px 15px;
+    background:#111827;
+}
+
+.header h1{
+    margin:0;
+    font-size:26px;
+}
+
+.header p{
+    color:#9ca3af;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.status{
+    text-align:center;
+    padding:20px;
+    border-radius:15px;
+    background:#374151;
+    margin-bottom:20px;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:#1e293b;
+    padding:22px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.card h3{
+    color:#9ca3af;
+    margin-top:0;
+}
+
+.value{
+    font-size:32px;
+    font-weight:bold;
+}
+
+.ai{
+    margin-top:20px;
+    padding:20px;
+    border-radius:15px;
+    background:#1e293b;
+}
+
+.ai h2{
+    margin-top:0;
+}
+
+.footer{
+    text-align:center;
+    color:#64748b;
+    margin-top:25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>⚡ AI Transformer Dashboard</h1>
+
+<p>
+Transformer ID:
+<strong>TR-01</strong>
+</p>
+
+</div>
+
+<div class="container">
+
+<div class="status">
+SYSTEM READY
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>🌡️ Temperature</h3>
+<div class="value">-- °C</div>
+</div>
+
+<div class="card">
+<h3>⚡ Voltage</h3>
+<div class="value">-- V</div>
+</div>
+
+<div class="card">
+<h3>🔌 Current</h3>
+<div class="value">-- A</div>
+</div>
+
+<div class="card">
+<h3>📊 Load</h3>
+<div class="value">-- %</div>
+</div>
+
+<div class="card">
+<h3>🔋 Relay</h3>
+<div class="value">--</div>
+</div>
+
+</div>
+
+<div class="ai">
+
+<h2>🤖 AI Diagnosis</h2>
+
+<p>
+Waiting for ESP32 data...
+</p>
+
+</div>
+
+<div class="footer">
+
+AI Transformer Health Monitoring System
+
+</div>
+
+</div>
+
+</body>
+</html>
