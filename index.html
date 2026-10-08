@@ -158,3 +158,26 @@ AI Transformer Health Monitoring System
 
 </body>
 </html>
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxYX8yjIdX2Sp3o9EtQGG5ArTVUNDqbgrV6MLbP_7IWUvFpRHQoj9Wr0BeaXBVlcN0n/exec";
+
+function loadData() {
+  const url = API_URL + "?action=data&callback=showData";
+
+  const oldScript = document.getElementById("apiScript");
+  if (oldScript) oldScript.remove();
+
+  const script = document.createElement("script");
+  script.id = "apiScript";
+  script.src = url;
+  document.body.appendChild(script);
+}
+
+function showData(data) {
+  console.log("Transformer data:", data);
+  // अगला स्टेप: डेटा को Dashboard पर दिखाना
+}
+
+loadData();
+setInterval(loadData, 5000);
+</script>
