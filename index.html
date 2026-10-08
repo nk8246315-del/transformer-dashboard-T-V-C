@@ -3,193 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AI Transformer Dashboard</title>
+<title>AI Transformer Health Dashboard</title>
 
 <style>
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#0f172a;
-    color:white;
+* {
+  box-sizing: border-box;
 }
 
-.header{
-    text-align:center;
-    padding:25px 15px;
-    background:#111827;
+body {
+  margin: 0;
+  padding: 16px;
+  background: #0b1220;
+  color: #f1f5f9;
+  font-family: Arial, sans-serif;
 }
 
-.header h1{
-    margin:0;
-    font-size:26px;
+header {
+  text-align: center;
+  margin: 10px 0 22px;
 }
 
-.header p{
-    color:#9ca3af;
+header h1 {
+  font-size: 24px;
+  color: #38bdf8;
+  margin-bottom: 8px;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:20px;
+header p {
+  color: #94a3b8;
+  margin: 0;
 }
 
-.status{
-    text-align:center;
-    padding:20px;
-    border-radius:15px;
-    background:#374151;
-    margin-bottom:20px;
-    font-size:25px;
-    font-weight:bold;
+.status {
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background: #172554;
+  color: #93c5fd;
+  text-align: center;
+  font-weight: bold;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.card{
-    background:#1e293b;
-    padding:22px;
-    border-radius:15px;
-    text-align:center;
+.card {
+  background: #172033;
+  border: 1px solid #29364b;
+  border-radius: 14px;
+  padding: 17px 12px;
+  min-width: 0;
 }
 
-.card h3{
-    color:#9ca3af;
-    margin-top:0;
+.label {
+  color: #94a3b8;
+  font-size: 13px;
 }
 
-.value{
-    font-size:32px;
-    font-weight:bold;
+.value {
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
 }
 
-.ai{
-    margin-top:20px;
-    padding:20px;
-    border-radius:15px;
-    background:#1e293b;
+.unit {
+  font-size: 13px;
+  color: #94a3b8;
 }
 
-.ai h2{
-    margin-top:0;
+.section {
+  margin-top: 16px;
+  background: #172033;
+  border: 1px solid #29364b;
+  border-radius: 14px;
+  padding: 17px;
+  overflow-wrap: anywhere;
 }
 
-.footer{
-    text-align:center;
-    color:#64748b;
-    margin-top:25px;
+.section h3 {
+  margin: 0 0 12px;
+  color: #38bdf8;
 }
 
+.small {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+#connection {
+  color: #fbbf24;
+}
+
+footer {
+  text-align: center;
+  color: #64748b;
+  font-size: 12px;
+  margin: 22px 0 8px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">
+<header>
+  <h1>⚡ AI Transformer</h1>
+  <p>Health Monitoring Dashboard</p>
+</header>
 
-<h1>⚡ AI Transformer Dashboard</h1>
+<div class="status" id="status">
+  SYSTEM: CONNECTING...
+</div>
 
-<p>
-Transformer ID:
-<strong>TR-01</strong>
-</p>
+<div class="grid">
+
+  <div class="card">
+    <div class="label">🌡️ Temperature</div>
+    <div class="value">
+      <span id="temperature">--</span>
+      <span class="unit">°C</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">⚡ Voltage</div>
+    <div class="value">
+      <span id="voltage">--</span>
+      <span class="unit">V</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">🔌 Current</div>
+    <div class="value">
+      <span id="current">--</span>
+      <span class="unit">A</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">📊 Load</div>
+    <div class="value">
+      <span id="load">--</span>
+      <span class="unit">%</span>
+    </div>
+  </div>
 
 </div>
 
-<div class="container">
-
-<div class="status">
-SYSTEM READY
+<div class="section">
+  <h3>🛡️ System Information</h3>
+  <p>Transformer ID: <strong id="transformer_id">TR-01</strong></p>
+  <p>Relay: <strong id="relay">UNKNOWN</strong></p>
+  <p>Connection: <strong id="connection">Connecting...</strong></p>
+  <p class="small">Last update: <span id="time">Not available</span></p>
 </div>
 
-<div class="cards">
-
-<div class="card">
-<h3>🌡️ Temperature</h3>
-<div class="value">-- °C</div>
+<div class="section">
+  <h3>🤖 AI Diagnosis</h3>
+  <p id="ai">Waiting for transformer data...</p>
 </div>
 
-<div class="card">
-<h3>⚡ Voltage</h3>
-<div class="value">-- V</div>
-</div>
+<footer>
+  AI Transformer Health Monitoring System
+</footer>
 
-<div class="card">
-<h3>🔌 Current</h3>
-<div class="value">-- A</div>
-</div>
-
-<div class="card">
-<h3>📊 Load</h3>
-<div class="value">-- %</div>
-</div>
-
-<div class="card">
-<h3>🔋 Relay</h3>
-<div class="value">--</div>
-</div>
-
-</div>
-
-<div class="ai">
-
-<h2>🤖 AI Diagnosis</h2>
-
-<p>
-Waiting for ESP32 data...
-</p>
-
-</div>
-
-<div class="footer">
-
-AI Transformer Health Monitoring System
-
-</div>
-
-</div>
-
-</body>
-</html>
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxYX8yjIdX2Sp3o9EtQGG5ArTVUNDqbgrV6MLbP_7IWUvFpRHQoj9Wr0BeaXBVlcN0n/exec";
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxYX8yjIdX2Sp3o9EtQGG5ArTVUNDqbgrV6MLbP_7IWUvFpRHQoj9Wr0BeaXBVlcN0n/exec";
 
-function showData(data) {
-  console.log("Transformer Data:", data);
+window.showData = function(data) {
+  document.getElementById("connection").textContent = "Connected";
 
-  const fields = {
-    temperature: data.temperature,
-    voltage: data.voltage,
-    current: data.current,
-    load: data.load
-  };
-
-  for (const [name, value] of Object.entries(fields)) {
-    const element = document.getElementById(name);
-    if (element) {
-      element.textContent =
-        value === null || value === undefined
-          ? "--"
-          : value;
-    }
+  function setValue(id, value) {
+    document.getElementById(id).textContent =
+      value === null || value === undefined || value === ""
+        ? "--"
+        : value;
   }
 
-  const status = document.getElementById("status");
-  if (status) status.textContent = data.status || "WAITING";
+  setValue("temperature", data.temperature);
+  setValue("voltage", data.voltage);
+  setValue("current", data.current);
+  setValue("load", data.load);
 
-  const relay = document.getElementById("relay");
-  if (relay) relay.textContent = data.relay || "UNKNOWN";
+  setValue("transformer_id", data.transformer_id || "TR-01");
+  setValue("relay", data.relay || "UNKNOWN");
 
-  const ai = document.getElementById("ai");
-  if (ai) ai.textContent = data.ai || "Waiting for ESP32 data...";
-}
+  document.getElementById("status").textContent =
+    "SYSTEM: " + (data.status || "WAITING");
+
+  document.getElementById("ai").textContent =
+    data.ai || "Waiting for ESP32 data...";
+
+  document.getElementById("time").textContent =
+    data.time || "Waiting for first reading";
+};
+
+window.apiError = function() {
+  document.getElementById("connection").textContent =
+    "Connection error";
+};
 
 function loadData() {
   const old = document.getElementById("apiScript");
@@ -198,10 +216,14 @@ function loadData() {
   const script = document.createElement("script");
   script.id = "apiScript";
   script.src = API_URL + "?action=data&callback=showData";
-  script.onerror = () => console.log("API connection error");
+  script.onerror = window.apiError;
+
   document.body.appendChild(script);
 }
 
 loadData();
-setInterval(loadData, 5000);
+setInterval(loadData, 10000);
 </script>
+
+</body>
+</html>
